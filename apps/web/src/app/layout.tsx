@@ -4,6 +4,7 @@ import './globals.css';
 import { CartProvider } from "@/contexts/CartContext";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/Navbar";
+import { ReactQueryProvider } from "@/components/providers/ReactQueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,13 +36,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CartProvider>
-          <div className="min-h-screen bg-background">
-            <Navbar />
-            {children}
-          </div>
-          <Toaster />
-        </CartProvider>
+        <ReactQueryProvider>
+          <CartProvider>
+            <div className="min-h-screen bg-background">
+              <Navbar />
+              {children}
+            </div>
+            <Toaster />
+          </CartProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

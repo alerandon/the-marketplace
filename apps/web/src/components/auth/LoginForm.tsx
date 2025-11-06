@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LogIn } from "lucide-react";
@@ -9,12 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { toast } from "@/components/ui/use-toast";
 import { loginSchema, LoginFormData } from "@/lib/schemas";
+import { useLogin } from "@/hooks/useAuth";
 
 const LoginForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const { mutate: login, isPending } = useLogin();
 
   const {
     register,
@@ -25,16 +22,10 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      toast({
-        title: "Login exitoso",
-        description: `Bienvenido ${data.email}`,
-      });
-      setIsLoading(false);
-      router.push("/stores");
-    }, 1500);
+    login({
+      email: data.email,
+      password: data.password,
+    });
   };
 
   return (
@@ -57,7 +48,7 @@ const LoginForm = () => {
               type="email"
               placeholder="tu@email.com"
               {...register("email")}
-              disabled={isLoading}
+              disabled={isPending}
             />
             {errors.email && (
               <p className="text-sm text-destructive">{errors.email.message}</p>
@@ -71,15 +62,15 @@ const LoginForm = () => {
               type="password"
               placeholder="••••••••"
               {...register("password")}
-              disabled={isLoading}
+              disabled={isPending}
             />
             {errors.password && (
               <p className="text-sm text-destructive">{errors.password.message}</p>
             )}
           </div>
 
-          <Button type="submit" className="w-full gap-2" disabled={isLoading}>
-            {isLoading ? (
+          <Button type="submit" className="w-full gap-2" disabled={isPending}>
+            {isPending ? (
               <>Iniciando sesión...</>
             ) : (
               <>
