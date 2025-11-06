@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
-import { MAX_PASSWORD_LENGTH } from '../constants';
+import { MAX_PASSWORD_LENGTH } from '@food-minimarket/shared';
 
 export class createUsersTable1762298400367 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {

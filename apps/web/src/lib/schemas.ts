@@ -1,3 +1,4 @@
+import { MAX_PASSWORD_LENGTH } from "@food-minimarket/shared";
 import { z } from "zod";
 
 export const loginSchema = z.object({
@@ -9,7 +10,7 @@ export const loginSchema = z.object({
   password: z
     .string()
     .min(6, { message: "La contraseña debe tener al menos 6 caracteres" })
-    .max(128, { message: "La contraseña debe tener menos de 128 caracteres" }),
+    .max(MAX_PASSWORD_LENGTH, { message: `La contraseña debe tener menos de ${MAX_PASSWORD_LENGTH} caracteres` }),
 });
 
 export const storeSearchSchema = z.object({

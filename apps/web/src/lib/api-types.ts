@@ -1,3 +1,4 @@
+import { PaginatedResult } from "@food-minimarket/shared";
 import { Store, Product, User } from "./types";
 
 export interface LoginRequest {
@@ -14,10 +15,10 @@ export interface ApiResponse<T> {
   data: T;
 }
 
-export type StoresResponse = Store[];
+export type StoresResponse = PaginatedResult<Store>;
 export type StoreResponse = Store;
-export type StoreProductsResponse = Product[];
 
+export type StoreProductsResponse = PaginatedResult<Product>;
 export type ProductResponse = Product;
 
 export interface ApiError {
