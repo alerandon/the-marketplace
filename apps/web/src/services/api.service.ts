@@ -109,6 +109,25 @@ export class ApiService {
     return this.handleResponse<T>(response);
   }
 
+  static async patch<T>(endpoint: string, data: unknown): Promise<T> {
+    const token = this.getAuthToken();
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: "PATCH",
+      headers,
+      body: JSON.stringify(data),
+    });
+
+    return this.handleResponse<T>(response);
+  }
+
   static async delete<T>(endpoint: string): Promise<T> {
     const token = this.getAuthToken();
     const headers: HeadersInit = {

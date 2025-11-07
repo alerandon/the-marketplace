@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import './globals.css';
-import { CartProvider } from "@/contexts/CartContext";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/Navbar";
-import { ReactQueryProvider } from "@/components/providers/ReactQueryProvider";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,13 +37,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
-          <CartProvider>
+          <AuthProvider>
             <div className="min-h-screen bg-background">
               <Navbar />
               {children}
             </div>
             <Toaster />
-          </CartProvider>
+          </AuthProvider>
         </ReactQueryProvider>
       </body>
     </html>
