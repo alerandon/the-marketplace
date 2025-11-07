@@ -1,4 +1,4 @@
-import { MAX_PASSWORD_LENGTH } from "@food-minimarket/shared";
+import { MAX_PASSWORD_LENGTH } from "@the-marketplace/shared";
 import { z } from "zod";
 
 export const loginSchema = z.object({

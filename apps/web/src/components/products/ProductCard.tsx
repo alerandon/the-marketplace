@@ -66,7 +66,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
           <div className="flex items-center justify-between pt-2 mt-auto">
             <p className="text-2xl font-bold text-primary">
-              S/ {parseFloat(product.price).toFixed(2)}
+              $ {parseFloat(product.price).toFixed(2)}
             </p>
 
             <div className="flex items-center gap-2 text-sm text-muted-foreground">

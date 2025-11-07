@@ -129,7 +129,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               </div>
 
               <p className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                S/ {parseFloat(product.price).toFixed(2)}
+                $ {parseFloat(product.price).toFixed(2)}
               </p>
 
               {product.description && (

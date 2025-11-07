@@ -1,5 +1,5 @@
 {
-  "name": "food-minimarket",
+  "name": "the-marketplace",
   "version": "1.0.0",
   "main": "index.js",
   "workspaces": [
@@ -8,14 +8,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alerandon/food-minimarket.git"
+    "url": "git+https://github.com/alerandon/the-marketplace.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alerandon/food-minimarket/issues"
+    "url": "https://github.com/alerandon/the-marketplace/issues"
   },
-  "homepage": "https://github.com/alerandon/food-minimarket#readme",
+  "homepage": "https://github.com/alerandon/the-marketplace#readme",
   "description": ""
 }

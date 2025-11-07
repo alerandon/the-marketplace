@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
 import { Transform } from 'class-transformer';
-import { MAX_PASSWORD_LENGTH } from '@food-minimarket/shared';
+import { MAX_PASSWORD_LENGTH } from '@the-marketplace/shared';
 
 export class LoginDto {
   @ApiProperty({

@@ -1,5 +1,5 @@
 {
-  "name": "@food-minimarket/shared",
+  "name": "@the-marketplace/shared",
   "version": "1.0.0",
   "description": "Shared types and constants between api and web",
   "main": "index.ts",

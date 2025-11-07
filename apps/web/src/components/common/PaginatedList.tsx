@@ -9,7 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { PAGINATE_DEFAULT_LIMIT } from "@food-minimarket/shared";
+import { PAGINATE_DEFAULT_LIMIT } from "@the-marketplace/shared";
 
 interface PaginatedListProps {
   currentPage: number;

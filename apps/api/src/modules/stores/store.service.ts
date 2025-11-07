@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Store } from './entities/store.entity';
-import { PaginatedResult, PAGINATE_DEFAULT_LIMIT } from '@food-minimarket/shared';
+import { PaginatedResult, PAGINATE_DEFAULT_LIMIT } from '@the-marketplace/shared';
 import { CreateStoreDto } from './dto/create-store.dto';
 import { UpdateStoreDto } from './dto/update-store.dto';
 import { CreateStoreProductDto } from './dto/create-store-product.dto';

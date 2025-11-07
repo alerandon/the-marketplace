@@ -13,7 +13,7 @@ const {
   API_DB_PORT = '5432',
   API_DB_USERNAME = 'postgres',
   API_DB_PASSWORD = 'password',
-  API_DB_DATABASE = 'food-minimarket',
+  API_DB_DATABASE = 'the-marketplace',
 } = process.env;
 
 export default new DataSource({

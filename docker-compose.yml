@@ -11,7 +11,7 @@ services:
       - ./packages:/app/packages
       - /app/node_modules
     networks:
-      - food_minimarket_network
+      - the_marketplace_network
     develop:
       watch:
         - action: sync
@@ -42,7 +42,7 @@ services:
     volumes:
       - ./packages:/app/packages
     networks:
-      - food_minimarket_network
+      - the_marketplace_network
     depends_on:
       postgres:
         condition: service_healthy
@@ -66,7 +66,7 @@ services:
     ports:
       - '5432:5432'
     networks:
-      - food_minimarket_network
+      - the_marketplace_network
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -77,7 +77,7 @@ services:
     restart: always
 
 networks:
-  food_minimarket_network:
+  the_marketplace_network:
     driver: bridge
 
 volumes:

@@ -1,6 +1,6 @@
 import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as argon2 from 'argon2';
-import { MAX_PASSWORD_LENGTH } from '@food-minimarket/shared';
+import { MAX_PASSWORD_LENGTH } from '@the-marketplace/shared';
 
 @Entity('users')
 export class User {

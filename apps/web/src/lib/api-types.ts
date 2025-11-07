@@ -1,4 +1,4 @@
-import { PaginatedResult } from "@food-minimarket/shared";
+import { PaginatedResult } from "@the-marketplace/shared";
 import { Store, Product, User } from "./types";
 
 export interface LoginRequest {
