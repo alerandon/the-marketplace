@@ -2,6 +2,7 @@ import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
@@ -27,14 +28,16 @@ PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = {
   isActive?: boolean;
-} & React.ComponentProps<"a">;
+  href?: string;
+} & Omit<React.ComponentProps<typeof Link>, "href">;
 
-const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) => (
-  <a
+const PaginationLink = ({ className, isActive, href, ...props }: PaginationLinkProps) => (
+  <Link
     aria-current={isActive ? "page" : undefined}
+    href={href || "#"}
     className={cn(
-      "flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      isActive ? "border-primary" : "border-transparent",
+      "inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-md border border-input bg-background px-3 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+      isActive && "border-primary bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground",
       className,
     )}
     {...props}
@@ -45,7 +48,7 @@ PaginationLink.displayName = "PaginationLink";
 const PaginationPrevious = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
-    className={cn("gap-1 pl-2.5", className)}
+    className={cn("gap-1 pl-2.5 pr-2.5", className)}
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
@@ -57,7 +60,7 @@ PaginationPrevious.displayName = "PaginationPrevious";
 const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
-    className={cn("gap-1 pr-2.5", className)}
+    className={cn("gap-1 pl-2.5 pr-2.5", className)}
     {...props}
   >
     <span>Siguiente</span>

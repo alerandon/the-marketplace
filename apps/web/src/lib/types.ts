@@ -24,6 +24,7 @@ export interface Product {
   sku: string;
   stock: number;
   isAvailable: boolean;
+  image?: string | null;
   storeId: string;
   createdAt: string;
   updatedAt: string;

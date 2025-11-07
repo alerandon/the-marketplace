@@ -12,12 +12,14 @@ export default async function StoreDetailPage({
 
   const showOnlyInStock = search?.inStock === "true";
   const currentPage = Number(search?.page) || 1;
+  const searchQuery = typeof search?.q === "string" ? search.q : undefined;
 
   return (
     <StoreDetailClient
       id={id}
       showOnlyInStock={showOnlyInStock}
       currentPage={currentPage}
+      searchQuery={searchQuery}
       searchParams={search as Record<string, string>}
     />
   );

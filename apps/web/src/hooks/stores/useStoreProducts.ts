@@ -6,6 +6,7 @@ import { storesService } from "@/services/stores.service";
 interface UseStoreProductsParams {
   page?: number;
   limit?: number;
+  q?: string;
 }
 
 export function useStoreProducts(
@@ -13,7 +14,7 @@ export function useStoreProducts(
   params?: UseStoreProductsParams
 ) {
   return useQuery({
-    queryKey: ["store-products", storeId, params?.page, params?.limit],
+    queryKey: ["store-products", storeId, params?.page, params?.limit, params?.q],
     queryFn: () => storesService.getStoreProducts(storeId, params),
     enabled: !!storeId,
   });
