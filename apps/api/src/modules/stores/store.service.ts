@@ -8,6 +8,7 @@ import { UpdateStoreDto } from './dto/update-store.dto';
 import { CreateStoreProductDto } from './dto/create-store-product.dto';
 import { UpdateStoreProductDto } from './dto/update-store-product.dto';
 import { Product } from '../products/entities/product.entity';
+import { applyFuzzySearch, applyFuzzySearchAnd } from './store.helpers';
 
 interface FindManyParams {
   pageNumber?: number;
@@ -38,10 +39,9 @@ export class StoresService {
     q,
   }: FindManyParams): Promise<PaginatedResult<Store>> {
     const queryBuilder = this.storeRepository.createQueryBuilder('store');
+
     if (q) {
-      queryBuilder.where('store.name ILIKE :name', {
-        name: `%${q}%`,
-      });
+      applyFuzzySearch<Store>(queryBuilder, q, 'store.name');
     }
 
     const skipNumber = (pageNumber - 1) * pageLimit;
@@ -105,9 +105,7 @@ export class StoresService {
       .where('store.id = :storeId', { storeId });
 
     if (q) {
-      queryBuilder.andWhere('product.name ILIKE :name', {
-        name: `%${q}%`,
-      });
+      applyFuzzySearchAnd(queryBuilder, q, 'product.name');
     }
     if (inStock) {
       queryBuilder.andWhere('product.stock > 0');
