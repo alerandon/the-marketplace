@@ -13,7 +13,7 @@ import { EntityNotFoundError } from 'typeorm';
 import { ProductsService } from './product.service';
 import { FindOneDocs, CreateDocs } from './docs';
 import { CreateProductDto } from './dto/create-product.dto';
-import { checkIfEntityNotFound } from '../../utils/error';
+import { checkIfEntityNotFound, checkIfDuplicateKey } from '../../utils/error';
 
 @Swagger.ApiTags('Products')
 @Controller('products')
@@ -44,9 +44,15 @@ export class ProductsController {
   @Swagger.ApiOperation(CreateDocs.apiOperation)
   @Swagger.ApiResponse(CreateDocs.apiResponseStatus201)
   @Swagger.ApiResponse(CreateDocs.apiResponseStatus400)
+  @Swagger.ApiResponse(CreateDocs.apiResponseStatus409)
   async create(@Body() createProductDto: CreateProductDto) {
-    const createdProduct = await this.productsService.create(createProductDto);
-    const response = { data: createdProduct };
-    return response;
+    try {
+      const createdProduct = await this.productsService.create(createProductDto);
+      const response = { data: createdProduct };
+      return response;
+    } catch (error) {
+      checkIfDuplicateKey(error);
+      throw error;
+    }
   }
 }

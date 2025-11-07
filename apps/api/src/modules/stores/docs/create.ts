@@ -62,4 +62,16 @@ export const CreateDocs = {
       },
     },
   } as ApiResponseOptions,
+
+  apiResponseStatus409: {
+    status: 409,
+    description: 'Conflict - A store with the same unique field already exists',
+    schema: {
+      example: {
+        statusCode: 409,
+        message: 'This field is already in use.',
+        error: 'Conflict',
+      },
+    },
+  } as ApiResponseOptions,
 };

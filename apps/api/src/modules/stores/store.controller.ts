@@ -19,7 +19,7 @@ import {
   DeleteDocs,
   StoreProductsDocs,
 } from './docs';
-import { checkIfEntityNotFound } from '../../utils/error';
+import { checkIfEntityNotFound, checkIfDuplicateKey } from '../../utils/error';
 import { CreateStoreDto } from './dto/create-store.dto';
 import { UpdateStoreDto } from './dto/update-store.dto';
 import { CreateStoreProductDto } from './dto/create-store-product.dto';
@@ -73,10 +73,16 @@ export class StoresController {
   @Swagger.ApiBody(CreateDocs.apiBody)
   @Swagger.ApiResponse(CreateDocs.apiResponseStatus201)
   @Swagger.ApiResponse(CreateDocs.apiResponseStatus400)
+  @Swagger.ApiResponse(CreateDocs.apiResponseStatus409)
   async create(@Body() body: CreateStoreDto) {
-    const store = await this.storesService.create(body);
-    const response = { data: store };
-    return response;
+    try {
+      const store = await this.storesService.create(body);
+      const response = { data: store };
+      return response;
+    } catch (error) {
+      checkIfDuplicateKey(error);
+      throw error;
+    }
   }
 
   @Put(':id')
@@ -86,7 +92,9 @@ export class StoresController {
   @Swagger.ApiParam(UpdateDocs.apiParam)
   @Swagger.ApiBody(UpdateDocs.apiBody)
   @Swagger.ApiResponse(UpdateDocs.apiResponseStatus200)
+  @Swagger.ApiResponse(UpdateDocs.apiResponseStatus400)
   @Swagger.ApiResponse(UpdateDocs.apiResponseStatus404)
+  @Swagger.ApiResponse(UpdateDocs.apiResponseStatus409)
   async update(@Param('id') id: string, @Body() body: UpdateStoreDto) {
     try {
       const store = await this.storesService.update(id, body);
@@ -94,6 +102,7 @@ export class StoresController {
       return response;
     } catch (error) {
       checkIfEntityNotFound({ error, id, entityName: 'Store' });
+      checkIfDuplicateKey(error);
       throw error;
     }
   }
@@ -153,6 +162,7 @@ export class StoresController {
   @Swagger.ApiBody(StoreProductsDocs.createProduct.apiBody)
   @Swagger.ApiResponse(StoreProductsDocs.createProduct.apiResponseStatus201)
   @Swagger.ApiResponse(StoreProductsDocs.createProduct.apiResponseStatus404)
+  @Swagger.ApiResponse(StoreProductsDocs.createProduct.apiResponseStatus409)
   async createProduct(
     @Param('id') id: string,
     @Body() createStoreProductDto: CreateStoreProductDto,
@@ -166,6 +176,7 @@ export class StoresController {
       return response;
     } catch (error) {
       checkIfEntityNotFound({ error, id, entityName: 'Store' });
+      checkIfDuplicateKey(error);
       throw error;
     }
   }
@@ -179,6 +190,7 @@ export class StoresController {
   @Swagger.ApiBody(StoreProductsDocs.updateProduct.apiBody)
   @Swagger.ApiResponse(StoreProductsDocs.updateProduct.apiResponseStatus200)
   @Swagger.ApiResponse(StoreProductsDocs.updateProduct.apiResponseStatus404)
+  @Swagger.ApiResponse(StoreProductsDocs.updateProduct.apiResponseStatus409)
   async updateProduct(
     @Param('id') id: string,
     @Param('productId') productId: string,
@@ -194,6 +206,7 @@ export class StoresController {
       return response;
     } catch (error) {
       checkIfEntityNotFound({ error, id, entityName: 'Store' });
+      checkIfDuplicateKey(error);
       throw error;
     }
   }

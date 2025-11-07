@@ -57,8 +57,25 @@ export const UpdateDocs = {
     },
   } as ApiResponseOptions,
 
+  apiResponseStatus400: {
+    status: 400,
+    description: 'Bad Request - Validation failed',
+  } as ApiResponseOptions,
+
   apiResponseStatus404: {
     status: 404,
     description: 'Store not found',
+  } as ApiResponseOptions,
+
+  apiResponseStatus409: {
+    status: 409,
+    description: 'Conflict - A store with the same unique field already exists',
+    schema: {
+      example: {
+        statusCode: 409,
+        message: 'This field is already in use.',
+        error: 'Conflict',
+      },
+    },
   } as ApiResponseOptions,
 };

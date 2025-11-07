@@ -82,6 +82,7 @@ export const StoreProductsDocs = {
             price: 3.99,
             sku: 'JUICE-ORA-500',
             stock: 50,
+            isAvailable: true,
           },
         },
       },
@@ -95,6 +96,18 @@ export const StoreProductsDocs = {
     apiResponseStatus404: {
       status: 404,
       description: 'Store or product not found',
+    } as ApiResponseOptions,
+
+    apiResponseStatus409: {
+      status: 409,
+      description: 'Conflict - A product with the same SKU already exists',
+      schema: {
+        example: {
+          statusCode: 409,
+          message: 'A record with sku "PROD-12345" already exists.',
+          error: 'Conflict',
+        },
+      },
     } as ApiResponseOptions,
   },
 
@@ -146,6 +159,18 @@ export const StoreProductsDocs = {
     apiResponseStatus404: {
       status: 404,
       description: 'Store or product not found',
+    } as ApiResponseOptions,
+
+    apiResponseStatus409: {
+      status: 409,
+      description: 'Conflict - A product with the same SKU already exists',
+      schema: {
+        example: {
+          statusCode: 409,
+          message: 'A record with sku "PROD-12345" already exists.',
+          error: 'Conflict',
+        },
+      },
     } as ApiResponseOptions,
   },
 
