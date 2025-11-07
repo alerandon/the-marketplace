@@ -6,6 +6,7 @@ import { UsersModule } from './modules/users/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { StoresModule } from './modules/stores/store.module';
 import { ProductsModule } from './modules/products/product.module';
+import { CartModule } from './modules/cart/cart.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { ProductsModule } from './modules/products/product.module';
     AuthModule,
     StoresModule,
     ProductsModule,
+    CartModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [database],
