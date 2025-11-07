@@ -29,12 +29,13 @@ export const storesService = {
 
   async getStoreProducts(
     id: string,
-    params?: { page?: number; limit?: number; q?: string }
+    params?: { page?: number; limit?: number; q?: string; inStock?: boolean }
   ): Promise<StoreProductsResponse> {
     const queryParams = new URLSearchParams();
     if (params?.page) queryParams.append("page", params.page.toString());
     if (params?.limit) queryParams.append("limit", params.limit.toString());
     if (params?.q) queryParams.append("q", params.q);
+    if (params?.inStock !== undefined) queryParams.append("inStock", params.inStock.toString());
 
     const queryString = queryParams.toString();
     const url = `/api/stores/${id}/products${queryString ? `?${queryString}` : ""}`;

@@ -7,6 +7,7 @@ interface UseStoreProductsParams {
   page?: number;
   limit?: number;
   q?: string;
+  inStock?: boolean;
 }
 
 export function useStoreProducts(
@@ -14,7 +15,7 @@ export function useStoreProducts(
   params?: UseStoreProductsParams
 ) {
   return useQuery({
-    queryKey: ["store-products", storeId, params?.page, params?.limit, params?.q],
+    queryKey: ["store-products", storeId, params?.page, params?.limit, params?.q, params?.inStock],
     queryFn: () => storesService.getStoreProducts(storeId, params),
     enabled: !!storeId,
   });

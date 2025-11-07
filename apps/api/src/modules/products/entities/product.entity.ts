@@ -42,6 +42,6 @@ export class Product {
   @JoinColumn({ name: 'storeId' })
   store: Store;
 
-  @Column({ type: 'uuid' })
+  @Column({ type: 'uuid', nullable: true })
   storeId: string;
 }

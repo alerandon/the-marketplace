@@ -32,7 +32,11 @@ export default function StoreDetailClient({
     data: allProducts,
     isLoading: isLoadingProducts,
     error: productsError,
-  } = useStoreProducts(id, { page: currentPage, q: searchQuery });
+  } = useStoreProducts(id, {
+    page: currentPage,
+    q: searchQuery,
+    inStock: showOnlyInStock ? true : undefined,
+  });
 
   const isLoading = isLoadingStore || isLoadingProducts;
   const error = storeError || productsError;
@@ -103,11 +107,6 @@ export default function StoreDetailClient({
   const hasNextPage = allProducts?.hasNext || false;
   const totalItems = allProducts?.totalItems || 0;
 
-  const filteredProducts = products.filter((product) => {
-    if (showOnlyInStock && !product.isAvailable) return false;
-    return true;
-  });
-
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
@@ -131,7 +130,7 @@ export default function StoreDetailClient({
           <div className="flex flex-col gap-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <h2 className="text-xl md:text-2xl font-bold">
-                Productos ({filteredProducts.length})
+                Productos ({products.length})
               </h2>
               <ProductFilters showOnlyInStock={showOnlyInStock} />
             </div>
@@ -139,7 +138,7 @@ export default function StoreDetailClient({
             <ProductSearch placeholder="Buscar productos en esta tienda..." />
           </div>
 
-          <ProductGrid products={filteredProducts} />
+          <ProductGrid products={products} />
 
           <PaginatedList
             currentPage={currentPage}
