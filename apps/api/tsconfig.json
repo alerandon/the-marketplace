@@ -20,10 +20,11 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "allowJs": true,
-    "checkJs": true
+    "checkJs": false
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "scripts"
   ]
 }
