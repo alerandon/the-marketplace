@@ -1,4 +1,52 @@
+# Dependencies
 **/node_modules/
+**/package-lock.json
+
+# Build outputs
 **/dist/
-**/*.log
+**/.next/
+**/out/
+**/build/
+
+# Environment variables
 **/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
+
+# Logs
+**/*.log
+**/logs/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# Testing
+**/coverage/
+**/.nyc_output/
+
+# Turbo
+.turbo/
+
+# Cache
+**/.cache/
+**/.parcel-cache/
+
+# Temporary files
+**/tmp/
+**/temp/

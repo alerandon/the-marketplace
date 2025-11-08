@@ -6,6 +6,15 @@
     "apps/*",
     "packages/*"
   ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "api:migrate": "npm run migration:run --workspace=api",
+    "api:seed": "npm run seed --workspace=api",
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alerandon/the-marketplace.git"
@@ -17,5 +26,9 @@
     "url": "https://github.com/alerandon/the-marketplace/issues"
   },
   "homepage": "https://github.com/alerandon/the-marketplace#readme",
-  "description": ""
+  "description": "",
+  "packageManager": "npm@10.9.0",
+  "devDependencies": {
+    "turbo": "^2.6.0"
+  }
 }

@@ -12,12 +12,19 @@ async function bootstrap() {
     }),
   );
   app.setGlobalPrefix('api');
-  app.enableCors();
+
+  const allowedOrigins = ['http://localhost:3000', process.env.WEB_URL].filter(
+    Boolean,
+  );
+  app.enableCors({
+    origin: allowedOrigins,
+    credentials: true,
+  });
 
   const config = new DocumentBuilder()
-    .setTitle('Food Minimarket API')
+    .setTitle('The Marketplace API')
     .setDescription(
-      'This is the documentation for the Food Minimarket API endpoint routes.',
+      'This is the documentation for the The Marketplace API endpoint routes.',
     )
     .addBearerAuth()
     .build();

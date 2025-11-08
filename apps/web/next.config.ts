@@ -26,6 +26,8 @@ const nextConfig: NextConfig = {
     return config;
   },
 
+  turbopack: {},
+
   ...(process.env.NODE_ENV === 'production' && {
     compiler: {
       removeConsole: true,
