@@ -2,7 +2,7 @@ const { DataSource } = require('typeorm');
 const path = require('path');
 
 // Importar la configuración de DataSource compilada
-const dataSourcePath = path.join(__dirname, 'dist', 'src', 'config', 'data-source.js');
+const dataSourcePath = path.join(__dirname, '..', 'dist', 'src', 'config', 'data-source.js');
 const { default: AppDataSource } = require(dataSourcePath);
 
 async function runMigrations() {
